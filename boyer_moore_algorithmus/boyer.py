@@ -4,6 +4,7 @@
 # Diese Python-Implementierung basiert auf der C++-Implementierung aus Wikipedia:
 # Quelle: https://de.wikipedia.org/wiki/Boyer-Moore-Algorithmus
 # Die Logik wurde in Python übertragen und für die URL-Analyse angepasst.
+# Bitte beachten: Diese Implementierung ist ausgelegt für "bereinigte" Datensätze also nur Phishing URLs oder legitime!
 
 
 #---------------------------- Imports ---------------------------------#
@@ -143,6 +144,7 @@ def boyer_moore(txtfile, list_of_patterns: list[str]) -> tuple:
     - Die Liste der Muster
     - Wie oft jedes Muster gefunden wurde
     - Die Anzahl eindeutiger URLs mit Treffern
+    Dabei ist zu beachten die Implementation ist auf Datensätze ausgelegt die Phishing und Legitime URLs in unterschiedlichen Dateien haben.
     """
     url_seen = set()  # Set für eindeutige URLs
     all_bad_char_table, all_good_suffix_table, occurrences_of_pattern = preprocess_patterns(list_of_patterns)
@@ -179,6 +181,7 @@ def boyer_moore_timed(txtfile, list_of_patterns: list[str]) -> tuple:
     - Wie oft jedes Muster gefunden wurde
     - Die Anzahl eindeutiger URLs mit Treffern
     - Die durchschnittliche Zeit für die Suche nach allen Musters in einer URL bzw. 50 URLs
+    Dabei ist zu beachten die Implementation ist auf Datensätze ausgelegt die Phishing und Legitime URLs in unterschiedlichen Dateien haben.
     """
     url_seen = set()  # Set für eindeutige URLs
     all_bad_char_table, all_good_suffix_table, occurrences_of_pattern = preprocess_patterns(list_of_patterns)
@@ -198,7 +201,25 @@ def boyer_moore_timed(txtfile, list_of_patterns: list[str]) -> tuple:
 
 #---------------------------- Visualisierung ---------------------------------#
 
-def top_10_hits(count_in,patterns):
+def boyer_moore_visualised(txtfile_phishing,txtfile_legit, list_of_patterns: list[str]):
+    """
+    Sucht mit dem Boyer-Moore-Algorithmus nach Mustern in 2 Datensätzen(Phishing und legitime URLs)
+    """
+
+    patterns, occurrences_of_pattern_in_phishing, total_hits_in_txtfile_phishing = boyer_moore(txtfile_phishing, list_of_patterns) # Boyer-Moore-Algo ausführen für phishing URL Datensatz
+    patterns, occurrences_of_pattern_in_legit, total_hits_in_txtfile_legit = boyer_moore(txtfile_legit, list_of_patterns) # Boyer-Moore-Algo ausführen für legit URL Datensatz
+
+
+    calculate_and_plot_confusion_matrix(total_hits_in_txtfile_phishing,
+                                        count_lines_readlines(txtfile_phishing) - total_hits_in_txtfile_phishing, 
+                                        total_hits_in_txtfile_legit, 
+                                        count_lines_readlines(txtfile_legit) - total_hits_in_txtfile_legit)
+
+    top_10_hits(occurrences_of_pattern_in_phishing,patterns,txtfile_phishing)
+    top_10_hits(occurrences_of_pattern_in_legit,patterns,txtfile_legit)
+
+
+def top_10_hits(count_in,patterns,txtfile="test.txt"):
     """
     Visualisiert die 10 häufigsten Muster in einer Liste.
     """
@@ -208,9 +229,7 @@ def top_10_hits(count_in,patterns):
     ax.bar(pattern, count, width=0.6)
 
     ax.set_ylabel('Auftreten')
-    ax.set_title(f"10 Häufigste Muster in {count_in}")
-    
-    plt.show
+    ax.set_title(f"10 Häufigste Muster in {txtfile}")
 
 
 def calculate_and_plot_confusion_matrix(true_positive, false_positive, false_negative, true_negative):
@@ -276,4 +295,6 @@ def count_lines_readlines(filename):
     with open(filename, encoding="utf-8") as f:
         return len(f.readlines())
     
+
+#----------------------------DACS 24/04 ---------------------------------------------------------#
 

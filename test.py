@@ -1,3 +1,4 @@
-import importlib
+import boyer_moore_algorithmus as bm
 
-boyer_moore = importlib.import_module("boyer_moore_algorithmus")
+bm.build_bad_character_table("abacaba")
+

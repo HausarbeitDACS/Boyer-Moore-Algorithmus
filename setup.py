@@ -3,8 +3,8 @@ with open("README.md", "r") as f:
     description = f.read()
 
 setup(
-    name='boyer_moore_algorithmus',
-    version='0.1.0',
+    name="boyer_moore_algorithmus",
+    version='1.0.0',
     packages=find_packages(),
     install_requires=[
     ],
