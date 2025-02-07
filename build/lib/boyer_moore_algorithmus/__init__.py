@@ -1,3 +1,3 @@
 # __init__.py
-from .boyer import *
+from boyer_moore_algorithmus.boyer import *
 
