@@ -4,7 +4,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="boyer_moore_algorithmus",
-    version='1.0.3',
+    version='1.0.4',
     packages=find_packages(),
     install_requires=[
     ],
