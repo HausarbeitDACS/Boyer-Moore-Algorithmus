@@ -80,10 +80,11 @@ boyer.boyer_moore_visualised("example\dataset_phishing.txt","example\dataset_leg
 ```
 
 <p float="left">
-  <img src="./img/confusion.png" width="31%" />
-  <img src="./img/balken_1.png" width="34%" /> 
-  <img src="./img/balken_2.png" width="34%" />
+  <img src="./img/balken_1.png" width="45%" /> 
+  <img src="./img/balken_2.png" width="45%" />
 </p>
+
+<img src="./img/confusion.png" width="50%" />
 
 
 
