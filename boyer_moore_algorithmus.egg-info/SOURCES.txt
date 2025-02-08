@@ -1,8 +1,0 @@
-README.md
-setup.py
-boyer_moore_algorithmus/__init__.py
-boyer_moore_algorithmus/boyer.py
-boyer_moore_algorithmus.egg-info/PKG-INFO
-boyer_moore_algorithmus.egg-info/SOURCES.txt
-boyer_moore_algorithmus.egg-info/dependency_links.txt
-boyer_moore_algorithmus.egg-info/top_level.txt

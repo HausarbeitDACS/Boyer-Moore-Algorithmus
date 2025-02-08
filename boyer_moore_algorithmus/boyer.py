@@ -205,6 +205,7 @@ def boyer_moore_visualised(txtfile_phishing,txtfile_legit, list_of_patterns: lis
     """
     Sucht mit dem Boyer-Moore-Algorithmus nach Mustern in 2 Datensätzen(Phishing und legitime URLs)
     """
+    txtfile_phishing_v,txtfile_legit_v = txtfile_phishing,txtfile_legit 
 
     patterns, occurrences_of_pattern_in_phishing, total_hits_in_txtfile_phishing = boyer_moore(txtfile_phishing, list_of_patterns) # Boyer-Moore-Algo ausführen für phishing URL Datensatz
     patterns, occurrences_of_pattern_in_legit, total_hits_in_txtfile_legit = boyer_moore(txtfile_legit, list_of_patterns) # Boyer-Moore-Algo ausführen für legit URL Datensatz
@@ -215,8 +216,8 @@ def boyer_moore_visualised(txtfile_phishing,txtfile_legit, list_of_patterns: lis
                                         total_hits_in_txtfile_legit, 
                                         count_lines_readlines(txtfile_legit) - total_hits_in_txtfile_legit)
 
-    top_10_hits(occurrences_of_pattern_in_phishing,patterns,txtfile_phishing)
-    top_10_hits(occurrences_of_pattern_in_legit,patterns,txtfile_legit)
+    top_10_hits(occurrences_of_pattern_in_phishing,patterns,txtfile_phishing_v)
+    top_10_hits(occurrences_of_pattern_in_legit,patterns,txtfile_legit_v)
 
 
 def top_10_hits(count_in,patterns,txtfile="test.txt"):
