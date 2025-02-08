@@ -44,7 +44,7 @@ list_of_patterns = [
 Die Hauptfunktion `boyer_moore` braucht `.txt` Datei und eine `Liste`
 von Muster. Ein `string` funktionert auch als Muster, dabei ist jedoch zu beachten, dass hier jedes Zeichen als eigenes Muster genommen und nicht der komplette `string`. 
 
-Es wird einmal die eingegebene List von Muster, die Anzahl wie oft jedes Muster gefunden wurde und wie viele URLs als Phishing "makiert" wurden.
+Es wird einmal die eingegebene List von Muster, die Anzahl wie oft jedes Muster gefunden wurde und wie viele URLs als Phishing "makiert" worden sind zurück geliefert.
 
 ```python
 list_of_patterns, occurrences_of_pattern, total_hits = boyer.boyer_moore("example\dataset_phishing.txt",list_of_patterns)
@@ -71,13 +71,19 @@ list_of_patterns, occurrences_of_pattern, total_hits, timer = boyer.boyer_moore_
 ```
 
 ### Visualisierung Boyer Moore Algorithmus 
-_muss in dieser Version noch schnell gefixt werden_
+
 Eine schicke optische Darstellung der Ergebnisse von einem legitimen und einem phishing Datensatz. Zum einen eine Confusion Matrix und zum
 anderen jeweils die _Top 10 Muster_ der `.txt` Dateien.
 
 ```python
 boyer.boyer_moore_visualised("example\dataset_phishing.txt","example\dataset_legitim.txt",list_of_patterns)
 ```
+
+<p float="left">
+  <img src="./img/confusion.png" width="31%" />
+  <img src="./img/balken_1.png" width="34%" /> 
+  <img src="./img/balken_2.png" width="34%" />
+</p>
 
 
 
